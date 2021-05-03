@@ -37,8 +37,24 @@ function reset (){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     canvas_data = { "pencil": [], "line": [], "rectangle": [], "circle": [], "eraser": [] };
 }
-        
-// pencil tool
+
+function showcolorset (){
+    var colorset = document.getElementById("colorset");
+    var btn = document.getElementById("colorsetterbtn");
+    var Hide = "Hide Colors";
+    var Show = "Show Colors";
+    
+    var textvalue = btn.innerHTML
+    if (textvalue == Hide ){
+        btn.innerHTML = Show;
+        colorset.hidden = true;
+    }
+    else if (textvalue == Show ){
+        btn.innerHTML = Hide;
+        colorset.hidden = false;
+    }
+}
+
         
 function pencil (){
         
@@ -77,7 +93,7 @@ function pencil (){
     }
 }
         
-// line tool
+
         
 function line (){
            
@@ -112,7 +128,7 @@ function line (){
     };
 }
         
-// rectangle tool
+
         
 function rectangle (){
             
@@ -148,7 +164,7 @@ function rectangle (){
     };
 }
         
-// circle tool
+
         
 function circle (){
             
@@ -185,20 +201,27 @@ function circle (){
     };
 }
         
-// eraser tool
+
         
 function eraser (){
         
-    /*canvas.onmousedown = function (e){
+    canvas.onmousedown = function (e){
+        curX = e.clientX - canvas.offsetLeft;
+        curY = e.clientY - canvas.offsetTop;
         hold = true;
+
+        prevX = curX;
+        prevY = curY;
+        ctx.beginPath();
+        ctx.moveTo(prevX, prevY);
     };
         
     canvas.onmousemove = function (e){
         if (hold){
             curX = e.clientX - canvas.offsetLeft;
             curY = e.clientY - canvas.offsetTop;
-            ctx.clearRect(curX, curY, 20, 20);
-            canvas_data.eraser.push({ "endx": curX, "endy": curY, "thick": ctx.lineWidth });
+            ctx.clearRect(curX, curY, 10, 10);
+            canvas_data.eraser.push({ "startx": prevX, "starty": prevY, "endx": curX, "endy": curY, "thick": ctx.lineWidth });
         }
     };
         
@@ -209,8 +232,8 @@ function eraser (){
     canvas.onmouseout = function (e){
         hold = false;
     };
-    */
-   
+    
+    /*
     canvas.onmousedown = function (e){
         curX = e.clientX - canvas.offsetLeft;
         curY = e.clientY - canvas.offsetTop;
@@ -244,15 +267,5 @@ function eraser (){
         ctx.stroke();
         canvas_data.eraser.push({ "startx": prevX, "starty": prevY, "endx": curX, "endy": curY, 
             "thick": ctx.lineWidth, "color": ctx.strokeStyle });
-    }
+    }*/
 }
-
-function save (){
-    var filename = document.getElementById("fname").value;
-    var data = JSON.stringify(canvas_data);
-    var image = canvas.toDataURL();
-    
-    $.post("/", { save_fname: filename, save_cdata: data, save_image: image });
-    alert(filename + " saved");
-    
-} 
