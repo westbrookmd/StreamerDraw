@@ -1,5 +1,5 @@
 var canvas = document.getElementById("paint");
-var ctx = canvas.getContext("2d");
+var ctx = canvas.getContext("2d")
 var width = canvas.width, height = canvas.height;
 var curX, curY, prevX, prevY;
 var hold = false;
@@ -210,6 +210,7 @@ function eraser (){
         hold = false;
     };
     */
+   
     canvas.onmousedown = function (e){
         curX = e.clientX - canvas.offsetLeft;
         curY = e.clientY - canvas.offsetTop;

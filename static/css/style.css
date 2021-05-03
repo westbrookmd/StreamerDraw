@@ -3,26 +3,26 @@
     height    : 440px;
     position  : absolute;
     left      : 0px;
-    top       : 40px; 
-    background: #35d128;
+    top       : 120px;
 }
 
 #paint {
-    position  : absolute;
-    left      : 130px;
-    top       : 40px;
+    position            : absolute;
+    left                : 130px;
+    top                 : 140px;
+    background-color    : white;
 }
 
 #colorset {
     position  : absolute;
-    left      : 0px;
-    top       : 500px;
-    width     : 860px;
+    left      : 130px;
+    top       : 605px;
+    width     : 960px;
 }
  
 #title {
     position  : absolute;
-    left      : 500px;
+    left      : 20px;
 }
 
 #penciltool {
